@@ -9,13 +9,8 @@ export default class Category extends Component {
         { id: 1, name: "Beverages" },
         { id: 2, name: "Condiments" },
         { id: 3, name: "Confections" }
-      ],
-      currentCategory: ""
+      ]
     }
-  }
-
-  updateCategory = (categoryName) => {
-    this.setState({ currentCategory: categoryName });
   }
 
   render() {
@@ -27,12 +22,12 @@ export default class Category extends Component {
           {this.state.categories.map(category => (
             <ListGroupItem
               key={category.id}
-              onClick={() => this.updateCategory(category.name)}>
+              onClick={() => this.props.updateCategory(category.name)}>
               {category.name}
             </ListGroupItem>
           ))}
         </ListGroup>
-        <p className='text-success'> Selected Category: {this.state.currentCategory} </p>
+        <p className='text-success'> Selected Category: {this.props.currentCategory} </p>
       </div>
     )
   }
