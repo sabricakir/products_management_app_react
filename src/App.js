@@ -5,6 +5,9 @@ import Product from './Product';
 import { Col, Container, Row } from 'reactstrap';
 
 export default class App extends Component {
+  categoryInfo = { title: "Category Component", desc: "Category Description" };
+  productInfo = { title: "Product Component", desc: "Product Description" };
+
   state = { currentCategory: "" }
 
   updateCategory = (categoryName) => {
@@ -12,8 +15,7 @@ export default class App extends Component {
   }
 
   render() {
-    let categoryInfo = { title: "Category Component", desc: "Category Description" };
-    let productInfo = { title: "Product Component", desc: "Product Description" };
+
     return (
       <div>
         <Container>
@@ -22,10 +24,10 @@ export default class App extends Component {
           </Row>
           <Row>
             <Col xs="3">
-              <Category updateCategory={this.updateCategory} currentCategory={this.state.currentCategory} info={categoryInfo} />
+              <Category updateCategory={this.updateCategory} currentCategory={this.state.currentCategory} info={this.categoryInfo} />
             </Col>
             <Col xs="9">
-              <Product info={productInfo} />
+              <Product info={this.productInfo} />
             </Col>
           </Row>
         </Container>
