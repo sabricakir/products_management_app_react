@@ -2,20 +2,27 @@ import React from 'react';
 import Navigation from './Navigation';
 import Category from './Category';
 import Product from './Product';
-import { Alert } from 'reactstrap';
+import { Col, Container, Row } from 'reactstrap';
 
 function App() {
+  let categoryInfo = { title: "Category Component", desc: "Category Description" };
+  let productInfo = { title: "Product Component", desc: "Product Description" };
   return (
     <div>
-      <Alert color="danger">
-        This is a primary alert — check it out!
-      </Alert>
-
-      <h1>Hello World From Base Component</h1>
-      <Navigation />
-      <Category />
-      <Product />
-    </div>
+      <Container>
+        <Row>
+          <Navigation />
+        </Row>
+        <Row>
+          <Col xs="3">
+            <Category info={categoryInfo} />
+          </Col>
+          <Col xs="9">
+            <Product info={productInfo} />
+          </Col>
+        </Row>
+      </Container>
+    </div >
   );
 }
 
