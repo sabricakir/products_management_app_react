@@ -24,13 +24,15 @@ export default class Category extends Component {
         <ListGroup>
           {this.state.categories.map(category => (
             <ListGroupItem
+              className={category.id === this.props.currentCategoryId ? 'list-group-item-primary' : ''}
+              style={{ cursor: 'pointer' }}
               key={category.id}
-              onClick={() => this.props.updateCategory(category.name)}>
+              onClick={() => this.props.updateCategory(category)}>
               {category.name}
             </ListGroupItem>
           ))}
         </ListGroup>
-        <p className='text-success'> Selected Category: {this.props.currentCategory} </p>
+        <p className='text-success'> Selected Category: {this.props.currentCategoryName} </p>
       </div>
     )
   }

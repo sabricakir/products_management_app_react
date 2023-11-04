@@ -2,30 +2,10 @@ import React, { Component } from 'react'
 import { Table } from 'reactstrap'
 
 export default class Product extends Component {
-  state = {
-    products: []
-  }
-
-  getProducts = () => {
-    let url = "http://localhost:3000/products";
-
-    if (this.props.currentCategory) {
-      url += "?categoryId=" + this.props.currentCategory;
-    }
-
-    fetch(url)
-      .then(response => response.json())
-      .then(data => this.setState({ products: data }));
-  }
-
-  componentDidMount() {
-    this.getProducts();
-  }
-
   render() {
     return (
       <div className='text-start'>
-        <h2> {this.props.info.title} / {this.props.currentCategory} </h2>
+        <h2> {this.props.info.title} <span className='text-info'>({this.props.currentCategoryName})</span> </h2>
         <p> {this.props.info.desc} </p>
         <Table borderless>
           <thead>
@@ -38,7 +18,7 @@ export default class Product extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.products.map(product => (
+            {this.props.products.map(product => (
               <tr key={product.id}>
                 <th scope="row">{product.id}</th>
                 <td>{product.productName}</td>

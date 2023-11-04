@@ -8,10 +8,27 @@ export default class App extends Component {
   categoryInfo = { title: "Category Component", desc: "Category Description" };
   productInfo = { title: "Product Component", desc: "Product Description" };
 
-  state = { currentCategory: "" }
+  state = { currentCategoryName: "", currentCategoryId: 0, products: [] };
 
-  updateCategory = (categoryName) => {
-    this.setState({ currentCategory: categoryName });
+  updateCategory = (category) => {
+    this.setState({ currentCategoryName: category.name, currentCategoryId: category.id });
+    this.getProducts();
+  }
+
+  getProducts = () => {
+    let url = "http://localhost:3000/products";
+
+    if (this.state.currentCategoryId !== 0) {
+      url += "?categoryId=" + this.state.currentCategoryId;
+    }
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => this.setState({ products: data }));
+  }
+
+  componentDidMount() {
+    this.getProducts();
   }
 
   render() {
@@ -24,10 +41,15 @@ export default class App extends Component {
           </Row>
           <Row>
             <Col xs="3">
-              <Category updateCategory={this.updateCategory} currentCategory={this.state.currentCategory} info={this.categoryInfo} />
+              <Category updateCategory={this.updateCategory}
+                currentCategoryName={this.state.currentCategoryName}
+                currentCategoryId={this.state.currentCategoryId}
+                info={this.categoryInfo} />
             </Col>
             <Col xs="9">
-              <Product currentCategory={this.state.currentCategory} info={this.productInfo} />
+              <Product currentCategoryName={this.state.currentCategoryName}
+                products={this.state.products}
+                info={this.productInfo} />
             </Col>
           </Row>
         </Container>
