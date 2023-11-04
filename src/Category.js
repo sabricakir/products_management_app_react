@@ -3,11 +3,17 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 
 export default class Category extends Component {
   state = {
-    categories: [
-      { id: 1, name: "Beverages" },
-      { id: 2, name: "Condiments" },
-      { id: 3, name: "Confections" }
-    ]
+    categories: []
+  }
+
+  getCategory = () => {
+    fetch("http://localhost:3000/categories")
+      .then(response => response.json())
+      .then(data => this.setState({ categories: data }));
+  }
+
+  componentDidMount() {
+    this.getCategory();
   }
 
   render() {
