@@ -5,7 +5,10 @@ export default class Product extends Component {
   render() {
     return (
       <div className='text-start'>
-        <h2> {this.props.info.title} <span className='text-info'>({this.props.currentCategoryName})</span> </h2>
+        {this.props.currentCategoryId === 0 ?
+          <h2> {this.props.info.title} </h2> :
+          <h2> {this.props.info.title} <span className='text-success'>({this.props.currentCategoryName})</span> </h2>
+        }
         <p> {this.props.info.desc} </p>
         <Table borderless>
           <thead>

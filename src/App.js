@@ -48,6 +48,7 @@ export default class App extends Component {
             </Col>
             <Col xs="9">
               <Product currentCategoryName={this.state.currentCategoryName}
+                currentCategoryId={this.state.currentCategoryId}
                 products={this.state.products}
                 info={this.productInfo} />
             </Col>

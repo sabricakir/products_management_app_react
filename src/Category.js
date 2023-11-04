@@ -32,7 +32,7 @@ export default class Category extends Component {
             </ListGroupItem>
           ))}
         </ListGroup>
-        <p className='text-success'> Selected Category: {this.props.currentCategoryName} </p>
+        {this.props.currentCategoryId === 0 ? <p className='text-danger'> Please select a category! </p> : <p className='text-success'> Selected Category: {this.props.currentCategoryName} </p>}
       </div>
     )
   }
