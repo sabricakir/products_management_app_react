@@ -7,6 +7,7 @@ import alertify from 'alertifyjs';
 import { Routes, Route } from "react-router-dom";
 import NotFound from './NotFound';
 import CartList from './CartList';
+import UserForm from './UserForm';
 
 export default class App extends Component {
   categoryInfo = { title: "Category Component", desc: "Category Description" };
@@ -80,6 +81,7 @@ export default class App extends Component {
                 <Route exact path="/cart" element={
                   <CartList cart={this.state.cart} removeFromCart={this.removeFromCart} />
                 } />
+                <Route path="/form" element={<UserForm />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Col>
