@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { DropdownItem, DropdownMenu, Badge, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 
 export default class CartSummary extends Component {
@@ -22,6 +23,10 @@ export default class CartSummary extends Component {
             </div>
           </DropdownItem>
         ))}
+        <DropdownItem divider />
+        <DropdownItem>
+          <Link to='/cart' className='text-decoration-none'>Go to cart</Link>
+        </DropdownItem>
       </DropdownMenu>
     )
   }
