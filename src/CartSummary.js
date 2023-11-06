@@ -3,7 +3,7 @@ import { DropdownItem, DropdownMenu, Badge } from 'reactstrap';
 
 
 export default class CartSummary extends Component {
-  render() {
+  renderCart = () => {
     return (
       <DropdownMenu>
         <DropdownItem header>Cart</DropdownItem>
@@ -18,6 +18,22 @@ export default class CartSummary extends Component {
           </DropdownItem>
         ))}
       </DropdownMenu>
+    )
+  }
+
+  renderEmptyCart = () => {
+    return (
+      <DropdownMenu>
+        <DropdownItem>No Items</DropdownItem>
+      </DropdownMenu>
+    )
+  }
+
+  render() {
+    return (
+      <div>
+        {this.props.cart.length > 0 ? this.renderCart() : this.renderEmptyCart()}
+      </div>
     )
   }
 }
