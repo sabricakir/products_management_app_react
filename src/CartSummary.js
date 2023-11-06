@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { DropdownItem, DropdownMenu, Badge } from 'reactstrap';
+import { DropdownItem, DropdownMenu, Badge, Button } from 'reactstrap';
 
 
 export default class CartSummary extends Component {
@@ -8,13 +8,18 @@ export default class CartSummary extends Component {
       <DropdownMenu>
         <DropdownItem header>Cart</DropdownItem>
         {this.props.cart.map(item => (
-          <DropdownItem key={item.product.id} className='d-flex'>
-            <p>{item.product.productName} <span className='text-danger'>${item.product.unitPrice}</span> </p>
-            <p className='ms-2'>
-              <Badge color="success" pill>
-                x{item.quantity}
-              </Badge>
-            </p>
+          <DropdownItem key={item.product.id} className='d-flex justify-content-between'>
+            <div className='d-flex'>
+              <p>{item.product.productName} <span className='text-danger'>${item.product.unitPrice}</span> </p>
+              <p className='ms-2'>
+                <Badge color="success" pill>
+                  x{item.quantity}
+                </Badge>
+              </p>
+            </div>
+            <div className='ms-2'>
+              <Button color='danger' size='sm' onClick={() => this.props.removeFromCart(item.product)}>Remove</Button>
+            </div>
           </DropdownItem>
         ))}
       </DropdownMenu>

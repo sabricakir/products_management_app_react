@@ -16,7 +16,7 @@ export default class Navigation extends Component {
           <DropdownToggle caret nav className='text-white bg-primary rounded-3 px-5 py-2'>
             Cart
           </DropdownToggle>
-          <CartSummary cart={this.props.cart} />
+          <CartSummary cart={this.props.cart} removeFromCart={this.props.removeFromCart} />
         </Dropdown>
       </Nav>
     )
