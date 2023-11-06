@@ -3,6 +3,7 @@ import Navigation from './Navigation';
 import Category from './Category';
 import Product from './Product';
 import { Col, Container, Row } from 'reactstrap';
+import alertify from 'alertifyjs';
 
 export default class App extends Component {
   categoryInfo = { title: "Category Component", desc: "Category Description" };
@@ -36,11 +37,13 @@ export default class App extends Component {
       newCart.push({ product: product, quantity: 1 });
     }
     this.setState({ cart: newCart });
+    alertify.success(product.productName + " added to cart!", 2);
   }
 
   removeFromCart = (product) => {
     let newCart = this.state.cart.filter(item => item.product.id !== product.id);
     this.setState({ cart: newCart });
+    alertify.error(product.productName + " removed from cart!", 2);
   }
 
   componentDidMount() {
